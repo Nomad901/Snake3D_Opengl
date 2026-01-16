@@ -18,8 +18,8 @@ project "Snake3D"
 	cppdialect "C++20"
 	staticruntime "Off"
 
-	targetdir { "bin/" .. outputdir .. "/%{prj.name}" }
-	objdir    { "bin-int/" .. outputdir .. "/%{prj.name}" }
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir    ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files 
 	{ 
@@ -44,7 +44,7 @@ project "Snake3D"
 		"thirdparty/libraries/assimp/include",
 		"thirdparty/libraries/FreeType/include",
 		"thirdparty/libraries/glad/include",
-		"thirdparty/libraries/glm/glm",
+		"thirdparty/libraries/glm",
 		"thirdparty/libraries/imgui",
 		"thirdparty/libraries/imgui/backends",
 		"thirdparty/libraries/SDL/include"
@@ -52,7 +52,9 @@ project "Snake3D"
 
 	libdirs
 	{
-		"thirdparty/libraries/SDL/"
+		"thirdparty/libraries/SDL/build/Debug",
+		"thirdparty/libraries/assimp/build/lib/Debug",
+		"thirdparty/libraries/FreeType/build/Debug"
 	}
 
 	links 
@@ -60,7 +62,8 @@ project "Snake3D"
 		"SDL3",
 		"SDL3main",
 		"assimp",
-		"freetype"
+		"freetype",
+		"opengl32"
 	}
 
 	filter "system:windows"
@@ -69,7 +72,6 @@ project "Snake3D"
 		defines 
 		{
 			"SNAKE_PLATFORM_WINDOWS",
-			"SDL_MAIN_HANDLED"
 		}
 
 	filter "configurations:Debug"

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine">
+      <UniqueIdentifier>{12A1320E-FE58-745B-6760-4DB753370F4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Application">
+      <UniqueIdentifier>{D5079803-C101-C155-AA6E-5766960727C2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{50A5DA7C-3C5D-1CCA-A564-F525913BB7BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\libraries">
+      <UniqueIdentifier>{DC1C6995-C8AB-F25E-71CA-065A5D380305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\libraries\glad">
+      <UniqueIdentifier>{635936B4-CF1B-6A3E-18CC-F8CA84CD421C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\libraries\glad\src">
+      <UniqueIdentifier>{FA10D630-6629-BD5A-2FD6-4CF49BAD51F4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\libraries\imgui">
+      <UniqueIdentifier>{465F263B-326F-D20B-9B28-372A8757C1A4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\libraries\imgui\backends">
+      <UniqueIdentifier>{30683A1A-9C21-A5C4-2581-BF9E91395B34}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Engine\Application\Game.h">
+      <Filter>src\Engine\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Application\Window.h">
+      <Filter>src\Engine\Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Engine\Application\Game.cpp">
+      <Filter>src\Engine\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\glad\src\glad.c">
+      <Filter>thirdparty\libraries\glad\src</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>thirdparty\libraries\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\backends\imgui_impl_sdl3.cpp">
+      <Filter>thirdparty\libraries\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\imgui.cpp">
+      <Filter>thirdparty\libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\imgui_draw.cpp">
+      <Filter>thirdparty\libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\imgui_tables.cpp">
+      <Filter>thirdparty\libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\libraries\imgui\imgui_widgets.cpp">
+      <Filter>thirdparty\libraries\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
