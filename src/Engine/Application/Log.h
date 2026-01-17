@@ -17,4 +17,8 @@ namespace SnakeEngine
 	};
 }
 
-#define GAME_TRACE(...) ::SnakeEngine::log::getGameLoger()->trace(__VA_ARGS__)
+#define GAME_TRACE(...) ::SnakeEngine::Log::getGameLogger()->trace(__VA_ARGS__)
+#define GAME_INFO(...)  ::SnakeEngine::Log::getGameLogger()->info(__VA_ARGS__)
+#define GAME_WARN(...)  ::SnakeEngine::Log::getGameLogger()->warn(__VA_ARGS__)
+#define GAME_ERROR(...) ::SnakeEngine::Log::getGameLogger()->error(__VA_ARGS__)
+#define GAME_FATAL(...) ::SnakeEngine::Log::getGameLogger()->fatal(__VA_ARGS__)
