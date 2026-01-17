@@ -34,6 +34,7 @@ bool Window::isWindowSizeWasChanged() const noexcept
 
 void Window::render()
 {
+	SDL_GL_SwapWindow(mWindow);
 }
 
 const SDL_Window* Window::getWindow() noexcept
@@ -69,7 +70,7 @@ void Window::init()
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
 	mWindow = SDL_CreateWindow(mWindowName.c_str(), mWindowWidth, mWindowHeight, 
-							   SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_RESIZABLE);
+							   SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	if (!mWindow)
 		GAME_ERROR(std::format("Couldnt initialize the Window! Name: {}, size: {}x{}", mWindowName, mWindowWidth, mWindowHeight));
 	

@@ -72,6 +72,8 @@ project "Snake3D"
 			"SNAKE_PLATFORM_WINDOWS",
 		}
 
+		postbuildcommands { "{COPYFILE} %{wks.location}/thirdparty/libraries/SDL/build/Debug/SDL3.dll %{cfg.targetdir}" }
+
 	filter "configurations:Debug"
 		defines "SNAKE_DEBUG"
 		symbols "On"

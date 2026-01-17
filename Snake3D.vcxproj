@@ -95,6 +95,9 @@
       <AdditionalDependencies>SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>thirdparty\libraries\SDL\build\Debug;thirdparty\libraries\assimp\build\lib\Debug;thirdparty\libraries\FreeType\build\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y $(SolutionDir)\thirdparty\libraries\SDL\build\Debug\SDL3.dll bin\windows-x86_64-Debug\Snake3D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -120,6 +123,9 @@
       <AdditionalDependencies>SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>thirdparty\libraries\SDL\build\Debug;thirdparty\libraries\assimp\build\lib\Debug;thirdparty\libraries\FreeType\build\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y $(SolutionDir)\thirdparty\libraries\SDL\build\Debug\SDL3.dll bin\windows-x86_64-Release\Snake3D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -145,6 +151,9 @@
       <AdditionalDependencies>SDL3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>thirdparty\libraries\SDL\build\Debug;thirdparty\libraries\assimp\build\lib\Debug;thirdparty\libraries\FreeType\build\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y $(SolutionDir)\thirdparty\libraries\SDL\build\Debug\SDL3.dll bin\windows-x86_64-Dist\Snake3D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Application\Game.h" />
