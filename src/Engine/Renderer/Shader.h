@@ -1,7 +1,4 @@
 #pragma once
-#include <filesystem>
-#include <unordered_map>
-
 #include "glm/glm.hpp"
 
 class Shader

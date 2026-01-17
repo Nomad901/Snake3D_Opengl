@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <memory>
-
 #include "Engine/Application/Window.h"
 #include "Engine/Application/Timer.h"
 
@@ -35,7 +32,7 @@ private:
 
 	float mMaxFPS{ 144.0f };
 	
-	std::unique_ptr<Window> mMainWindow;
-	Timer mTimer;
+	std::unique_ptr<SnakeEngine::Window> mMainWindow;
+	SnakeEngine::Timer mTimer;
 };
 

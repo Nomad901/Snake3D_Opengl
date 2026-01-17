@@ -1,8 +1,10 @@
+#include "snkpch.h"
+
 #include "Engine/Application/Game.h"
 
 Game::Game(uint32_t pWindowWidth, uint32_t pWindowHeight, float pMaxFPS)
 {
-	mMainWindow = std::make_unique<Window>("Snake3D", pWindowWidth, pWindowHeight);
+	mMainWindow = std::make_unique<SnakeEngine::Window>("Snake3D", pWindowWidth, pWindowHeight);
 	mMaxFPS = pMaxFPS;
 }
 

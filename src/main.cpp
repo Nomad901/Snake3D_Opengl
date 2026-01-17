@@ -1,3 +1,5 @@
+#include "snkpch.h"
+
 #include "Engine/Application/Game.h"
 
 int32_t main()

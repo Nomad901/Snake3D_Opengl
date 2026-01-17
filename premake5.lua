@@ -23,6 +23,9 @@ project "Snake3D"
 	targetdir ("build/bin/" .. outputdir .. "/%{prj.name}")
 	objdir    ("build/bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "snkpch.h"
+	pchsource "src/snkpch.cpp"
+
 	files 
 	{ 
 		"src/**.h",
@@ -49,7 +52,8 @@ project "Snake3D"
 		"thirdparty/libraries/glm",
 		"thirdparty/libraries/imgui",
 		"thirdparty/libraries/imgui/backends",
-		"thirdparty/libraries/SDL/include"
+		"thirdparty/libraries/SDL/include",
+		"thirdparty/libraries/SDL/include/SDL3"
 	}
 
 	libdirs
@@ -87,6 +91,11 @@ project "Snake3D"
 	filter "configurations:Dist"
 		defines "SNAKE_DIST"
 		optimize "Full"
+
+	filter { "files:thirdparty/libraries/**.cpp or thirdparty/libraries/**.c" }
+		flags { "NoPCH" }
+		pchheader ""  -- Explicitly clear PCH for these files
+	filter {}
 
 	filter "action:vs*"
 		toolset "v145"
