@@ -10,6 +10,8 @@ workspace "Snake3D"
 
 	flags { "MultiProcessorCompile" }
 
+	location "build"
+
 	outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 project "Snake3D"
@@ -18,8 +20,8 @@ project "Snake3D"
 	cppdialect "C++20"
 	staticruntime "Off"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir    ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("build/bin/" .. outputdir .. "/%{prj.name}")
+	objdir    ("build/bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files 
 	{ 
@@ -72,7 +74,7 @@ project "Snake3D"
 			"SNAKE_PLATFORM_WINDOWS",
 		}
 
-		postbuildcommands { "{COPYFILE} %{wks.location}/thirdparty/libraries/SDL/build/Debug/SDL3.dll %{cfg.targetdir}" }
+		postbuildcommands { "{COPYFILE} %{wks.location}" .. "../thirdparty/libraries/SDL/build/Debug/SDL3.dll %{cfg.targetdir}" }
 
 	filter "configurations:Debug"
 		defines "SNAKE_DEBUG"

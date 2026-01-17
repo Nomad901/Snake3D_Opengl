@@ -1,11 +1,7 @@
-#include "Engine/Application/Window.h"
+#include "Engine/Application/Game.h"
 
 int32_t main()
 {
-	Window window("Snake3D", 1280, 720);
-	
-	while (true)
-	{
-		window.render();
-	}
+	Game game(1280, 720);
+	game.run();
 }

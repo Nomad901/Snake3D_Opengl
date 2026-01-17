@@ -1,18 +1,30 @@
 #pragma once
 #include <iostream>
+#include <memory>
+
+#include "Engine/Application/Window.h"
+#include "Engine/Application/Timer.h"
 
 class Game
 {
 public:
 	Game(int32_t pWindowWidth, int32_t pWindowHeight);
-	Game() = default;
-	~Game();
+	~Game() = default;
 	 
-	void init();
 	void run();
 
-private:
-	int32_t mWindowWidth, mWindowHeight;
+	bool isRunning() noexcept;
 
+private:
+	void preRun();
+	void input();
+	void preUpdate();
+	void update();
+
+private:
+	bool mIsRunning{ false };
+
+	std::unique_ptr<Window> mMainWindow;
+	Timer mTimer;
 };
 
