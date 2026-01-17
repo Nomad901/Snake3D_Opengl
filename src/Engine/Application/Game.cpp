@@ -1,8 +1,9 @@
 #include "Engine/Application/Game.h"
 
-Game::Game(int32_t pWindowWidth, int32_t pWindowHeight)
+Game::Game(uint32_t pWindowWidth, uint32_t pWindowHeight, float pMaxFPS)
 {
 	mMainWindow = std::make_unique<Window>("Snake3D", pWindowWidth, pWindowHeight);
+	mMaxFPS = pMaxFPS;
 }
 
 void Game::run()
@@ -10,12 +11,13 @@ void Game::run()
 	preRun();
 	while (mIsRunning)
 	{
-		mTimer.startTimer();
+		startFrame();
+
 		input();
 		preUpdate();
 		update();
-		mTimer.stopTimer();
-		std::cout << std::format("Timer delta time: {}\n", mTimer.getDeltaTime());
+
+		stopFrame();
 	}
 }
 
@@ -42,4 +44,23 @@ void Game::preUpdate()
 void Game::update()
 {
 	mMainWindow->render();
+}
+
+void Game::startFrame()
+{
+	mTimer.startTimer();
+}
+
+void Game::stopFrame()
+{
+	mTimer.stopTimer();
+
+	const float deltaTime = mTimer.getDeltaTime();
+	const float maxFPSMs = 1000.0f / mMaxFPS;
+
+	if (deltaTime < maxFPSMs)
+	{
+		float delay = maxFPSMs - deltaTime;
+		SDL_Delay(static_cast<Uint32>(delay));
+	}
 }

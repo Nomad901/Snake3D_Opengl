@@ -8,10 +8,10 @@
 class Window
 {
 public:
-	Window(std::string_view pWindowName, int32_t pWindowWidth, int32_t pWindowHeight);
+	Window(std::string_view pWindowName, uint32_t pWindowWidth, uint32_t pWindowHeight);
 	~Window();
 
-	void changeWindowSize(int32_t pWindowWidth, int32_t pWindowHeight);
+	void changeWindowSize(uint32_t pWindowWidth, uint32_t pWindowHeight);
 	bool isWindowSizeWasChanged() const noexcept;
 
 	void render();
@@ -32,7 +32,7 @@ private:
 private:
 	bool mWindowSizeWasChanged{ true };
 
-	int32_t mWindowWidth{ 1280 }, mWindowHeight{ 720 };
+	uint32_t mWindowWidth{ 1280 }, mWindowHeight{ 720 };
 	std::string mWindowName{};
 
 	SDL_Window* mWindow;

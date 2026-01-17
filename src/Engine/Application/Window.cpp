@@ -3,7 +3,7 @@
 #include "Engine/Application/Window.h"
 #include "Engine/Application/Log.h"
 
-Window::Window(std::string_view pWindowName, int32_t pWindowWidth, int32_t pWindowHeight)
+Window::Window(std::string_view pWindowName, uint32_t pWindowWidth, uint32_t pWindowHeight)
 {
 	mWindowWidth = pWindowWidth;
 	mWindowHeight = pWindowHeight;
@@ -19,7 +19,7 @@ Window::~Window()
 	SDL_Quit();
 }
 
-void Window::changeWindowSize(int32_t pWindowWidth, int32_t pWindowHeight)
+void Window::changeWindowSize(uint32_t pWindowWidth, uint32_t pWindowHeight)
 {
 	mWindowWidth = pWindowWidth;
 	mWindowHeight = pWindowHeight;

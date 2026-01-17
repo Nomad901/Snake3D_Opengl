@@ -8,7 +8,7 @@
 class Game
 {
 public:
-	Game(int32_t pWindowWidth, int32_t pWindowHeight);
+	Game(uint32_t pWindowWidth, uint32_t pWindowHeight, float pMaxFPS);
 	~Game() = default;
 	 
 	void run();
@@ -21,9 +21,20 @@ private:
 	void preUpdate();
 	void update();
 
+	// ***************
+	// Starts timer for regulation fps;
+	// ***************
+	void startFrame();
+	// ***************
+	// Stops timer and regulates fps;
+	// ***************
+	void stopFrame(); 
+
 private:
 	bool mIsRunning{ false };
 
+	float mMaxFPS{ 144.0f };
+	
 	std::unique_ptr<Window> mMainWindow;
 	Timer mTimer;
 };
