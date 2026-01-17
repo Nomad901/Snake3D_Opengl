@@ -33,12 +33,21 @@
     <ClInclude Include="src\Engine\Application\Game.h">
       <Filter>src\Engine\Application</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Application\Log.h">
+      <Filter>src\Engine\Application</Filter>
+    </ClInclude>
     <ClInclude Include="src\Engine\Application\Window.h">
       <Filter>src\Engine\Application</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Application\Game.cpp">
+      <Filter>src\Engine\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Application\Log.cpp">
+      <Filter>src\Engine\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Application\Window.cpp">
       <Filter>src\Engine\Application</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">

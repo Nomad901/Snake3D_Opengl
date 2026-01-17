@@ -60,14 +60,12 @@ project "Snake3D"
 	links 
 	{
 		"SDL3",
-		"SDL3main",
-		"assimp",
-		"freetype",
-		"opengl32"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+
+		buildoptions { "/utf-8" }
 
 		defines 
 		{
@@ -85,3 +83,7 @@ project "Snake3D"
 	filter "configurations:Dist"
 		defines "SNAKE_DIST"
 		optimize "Full"
+
+	filter "action:vs*"
+		toolset "v145"
+	filter {}
