@@ -55,9 +55,7 @@ void Game::startFrame()
 
 void Game::stopFrame()
 {
-	mTimer.stopTimer();
-
-	const float deltaTime = mTimer.getDeltaTime();
+	const float deltaTime = mTimer.getElapsedTime();
 	const float maxFPSMs = 1000.0f / mMaxFPS;
 
 	if (deltaTime < maxFPSMs)

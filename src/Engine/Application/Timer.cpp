@@ -1,6 +1,6 @@
 #include "snkpch.h"
 
-#include "Engine/Application/Timer.h"
+#include "Engine/Application/Time/Timer.h"
 
 namespace SnakeEngine
 {
@@ -27,6 +27,27 @@ namespace SnakeEngine
 	}
 
 	float Timer::getDeltaTime()
+	{
+		using namespace std::chrono;
+
+		mEndTimer = high_resolution_clock::now();
+
+		switch (mDimensionOfTime)
+		{
+		case Timer::DimensionOfTime::NANOSECONDS:
+			return static_cast<float>(duration_cast<nanoseconds>(mEndTimer - mStartTimer).count());
+		case Timer::DimensionOfTime::MILISECONDS:
+			return static_cast<float>(duration_cast<milliseconds>(mEndTimer - mStartTimer).count());
+		case Timer::DimensionOfTime::SECONDS:
+			return static_cast<float>(duration_cast<seconds>(mEndTimer - mStartTimer).count());
+		case Timer::DimensionOfTime::MINUTES:
+			return static_cast<float>(duration_cast<minutes>(mEndTimer - mStartTimer).count());
+		}
+
+		return 0.0f;
+	}
+
+	float Timer::getElapsedTime()
 	{
 		using namespace std::chrono;
 

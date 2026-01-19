@@ -19,9 +19,13 @@ namespace SnakeEngine
 		bool isRunning() noexcept;
 
 		// *****************
-		// Stops timer and returns delta time;
+		// Returns delta time (NowTime - FirstTime);
 		// *****************
 		float getDeltaTime();
+		// *****************
+		// Returns delta time and stops timer;
+		// *****************
+		float getElapsedTime();
 
 	private:
 		enum class TimerStates
