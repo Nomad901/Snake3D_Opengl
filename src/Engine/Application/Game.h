@@ -15,7 +15,7 @@ namespace SnakeEngine
 	struct GameComponents
 	{
 		Window* mainWindow;
-		ImGuiLayer imguiLayer;
+		ImGuiLayer* imguiLayer;
 		SnakeEngine::Timer timer;
 	};
 

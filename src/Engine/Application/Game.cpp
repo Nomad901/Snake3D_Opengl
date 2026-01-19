@@ -7,16 +7,19 @@ namespace SnakeEngine
 	Game::Game(GameWindowConfiguration pGameWindowConfiguration)
 		: mGameWindowConfiguration{ pGameWindowConfiguration }
 	{
+		mInstance = this;
+
 		mGameComponents.mainWindow = new Window(pGameWindowConfiguration.nameWindow, 
 												pGameWindowConfiguration.windowWidth, 
 												pGameWindowConfiguration.windowHeight);
+		mGameComponents.imguiLayer = new ImGuiLayer();
 
-		mInstance = this;
 	}
 
 	Game::~Game()
 	{
 		delete mGameComponents.mainWindow;
+		delete mGameComponents.imguiLayer;
 	}
 
 	void Game::run()
@@ -56,7 +59,12 @@ namespace SnakeEngine
 
 	void Game::input()
 	{
+		ImGui::Begin("name");
+		ImGui::SetNextWindowPos(ImVec2(200.0f, 200.0f));
+		ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));
+
 		ImGui::Button("some buttons");
+		ImGui::End();
 	}
 
 	void Game::preUpdate()
@@ -72,12 +80,12 @@ namespace SnakeEngine
 	void Game::startFrame()
 	{
 		mGameComponents.timer.startTimer();
-		mGameComponents.imguiLayer.begin();
+		mGameComponents.imguiLayer->begin();
 	}
 
 	void Game::stopFrame()
 	{
-		mGameComponents.imguiLayer.end();
+		mGameComponents.imguiLayer->end();
 
 		const float deltaTime = mGameComponents.timer.getElapsedTime();
 		const float maxFPSMs = 1000.0f / mGameWindowConfiguration.maxFPS;
@@ -88,5 +96,4 @@ namespace SnakeEngine
 			SDL_Delay(static_cast<Uint32>(delay));
 		}
 	}
-
 }
