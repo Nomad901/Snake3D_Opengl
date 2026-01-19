@@ -1,38 +1,53 @@
 #pragma once
 #include "Engine/Application/Window.h"
-#include "Engine/Application/Time/Timer.h"
+#include "Engine/Application/Timer.h"
 
-class Game
+namespace SnakeEngine
 {
-public:
-	Game(uint32_t pWindowWidth, uint32_t pWindowHeight, float pMaxFPS);
-	~Game() = default;
+	struct GameWindowConfiguration
+	{
+		uint32_t windowWidth{ 1280 }, windowHeight{ 720 };
+		float maxFPS{ 144.0f };
+		std::string nameWindow{ "Snake3D" };
+	};
+
+	class Game
+	{
+	public:
+		Game(GameWindowConfiguration pGameConfiguration);
+		~Game() = default;
 	 
-	void run();
+		void run();
 
-	bool isRunning() noexcept;
+		bool isRunning() noexcept;
 
-private:
-	void preRun();
-	void input();
-	void preUpdate();
-	void update();
+		static Game& getInstance();
+		Window& getMainWindowRef() noexcept;
 
-	// ***************
-	// Starts timer for regulation fps;
-	// ***************
-	void startFrame();
-	// ***************
-	// Stops timer and regulates fps;
-	// ***************
-	void stopFrame(); 
+	private:
+		void preRun();
+		void input();
+		void preUpdate();
+		void update();
 
-private:
-	bool mIsRunning{ false };
+		// ***************
+		// Starts timer for regulation fps;
+		// ***************
+		void startFrame();
+		// ***************
+		// Stops timer and regulates fps;
+		// ***************
+		void stopFrame(); 
 
-	float mMaxFPS{ 144.0f };
+	private:
+		bool mIsRunning{ false };
+		
+		GameWindowConfiguration mGameWindowConfiguration;
 	
-	std::unique_ptr<SnakeEngine::Window> mMainWindow;
-	SnakeEngine::Timer mTimer;
-};
+		std::unique_ptr<SnakeEngine::Window> mMainWindow;
+		SnakeEngine::Timer mTimer;
+
+		static inline Game* mInstance = nullptr;
+	};
+}
 

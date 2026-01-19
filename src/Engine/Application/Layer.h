@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 class Layer
 {
 public:
@@ -10,7 +8,7 @@ public:
 	{ }
 	virtual ~Layer() = default;
 
-	virtual void onUpdate() {}
+	virtual void onUpdate(float pDeltaTime) {}
 	virtual void onImGuiRender() {}
 
 	const std::string& getNameLayer() const noexcept 

@@ -2,65 +2,83 @@
 
 #include "Engine/Application/Game.h"
 
-Game::Game(uint32_t pWindowWidth, uint32_t pWindowHeight, float pMaxFPS)
+namespace SnakeEngine
 {
-	mMainWindow = std::make_unique<SnakeEngine::Window>("Snake3D", pWindowWidth, pWindowHeight);
-	mMaxFPS = pMaxFPS;
-}
-
-void Game::run()
-{
-	preRun();
-	while (mIsRunning)
+	Game::Game(GameWindowConfiguration pGameWindowConfiguration)
+		: mGameWindowConfiguration{ pGameWindowConfiguration }
 	{
-		startFrame();
+		mMainWindow = std::make_unique<SnakeEngine::Window>(pGameWindowConfiguration.nameWindow, 
+															pGameWindowConfiguration.windowWidth, 
+															pGameWindowConfiguration.windowHeight);
 
-		input();
-		preUpdate();
-		update();
-
-		stopFrame();
+		mInstance = this;
 	}
-}
 
-bool Game::isRunning() noexcept
-{
-	return mIsRunning;
-}
-
-void Game::preRun()
-{
-	mIsRunning = true;
-}
-
-void Game::input()
-{
-
-}
-
-void Game::preUpdate()
-{
-
-}
-
-void Game::update()
-{
-	mMainWindow->render();
-}
-
-void Game::startFrame()
-{
-	mTimer.startTimer();
-}
-
-void Game::stopFrame()
-{
-	const float deltaTime = mTimer.getElapsedTime();
-	const float maxFPSMs = 1000.0f / mMaxFPS;
-
-	if (deltaTime < maxFPSMs)
+	void Game::run()
 	{
-		float delay = maxFPSMs - deltaTime;
-		SDL_Delay(static_cast<Uint32>(delay));
+		preRun();
+		while (mIsRunning)
+		{
+			startFrame();
+
+			input();
+			preUpdate();
+			update();
+
+			stopFrame();
+		}
 	}
+
+	bool Game::isRunning() noexcept
+	{
+		return mIsRunning;
+	}
+
+	Game& Game::getInstance()
+	{
+		return *mInstance;
+	}
+
+	Window& Game::getMainWindowRef() noexcept
+	{
+		return *mMainWindow;
+	}
+
+	void Game::preRun()
+	{
+		mIsRunning = true;
+	}
+
+	void Game::input()
+	{
+
+	}
+
+	void Game::preUpdate()
+	{
+
+	}
+
+	void Game::update()
+	{
+		mMainWindow->render();
+	}
+
+	void Game::startFrame()
+	{
+		mTimer.startTimer();
+	}
+
+	void Game::stopFrame()
+	{
+		const float deltaTime = mTimer.getElapsedTime();
+		const float maxFPSMs = 1000.0f / mGameWindowConfiguration.maxFPS;
+
+		if (deltaTime < maxFPSMs)
+		{
+			float delay = maxFPSMs - deltaTime;
+			SDL_Delay(static_cast<Uint32>(delay));
+		}
+	}
+
 }

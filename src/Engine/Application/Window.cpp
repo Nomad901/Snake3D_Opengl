@@ -39,12 +39,12 @@ namespace SnakeEngine
 		SDL_GL_SwapWindow(mWindow);
 	}
 
-	const SDL_Window* Window::getWindow() noexcept
+	SDL_Window& Window::getWindow() noexcept
 	{
-		return mWindow;
+		return *mWindow;
 	}
 
-	const SDL_GLContext& Window::getContext() noexcept
+	SDL_GLContext& Window::getContext() noexcept
 	{
 		return mContext;
 	}
@@ -52,6 +52,16 @@ namespace SnakeEngine
 	const std::string& Window::getWindowName() const noexcept
 	{
 		return mWindowName;
+	}
+
+	uint32_t Window::getWindowWidth() const noexcept
+	{
+		return mWindowWidth;
+	}
+
+	uint32_t Window::getWindowHeight() const noexcept
+	{
+		return mWindowHeight;
 	}
 
 	void Window::init()

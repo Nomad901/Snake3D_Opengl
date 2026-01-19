@@ -1,6 +1,6 @@
 #include "snkpch.h"
 
-#include "Engine/Application/Time/Timer.h"
+#include "Engine/Application/Timer.h"
 
 namespace SnakeEngine
 {

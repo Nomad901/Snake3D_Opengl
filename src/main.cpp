@@ -4,10 +4,12 @@
 
 int32_t main()
 {
-	uint32_t windowWidth = 1280;
-	uint32_t windowHeight = 720;
-	float fpsRate = 144.0f;
+	SnakeEngine::GameWindowConfiguration gameWindowConfig;
+	gameWindowConfig.windowWidth = 1280;
+	gameWindowConfig.windowHeight = 720;
+	gameWindowConfig.maxFPS = 144.0f;
+	gameWindowConfig.nameWindow = "Snake3D";
 
-	Game game(windowWidth, windowHeight, fpsRate);
+	SnakeEngine::Game game(gameWindowConfig);
 	game.run();
 }

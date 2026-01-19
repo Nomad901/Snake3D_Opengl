@@ -13,17 +13,19 @@ namespace SnakeEngine
 
 		void render();
 
-		const SDL_Window* getWindow() noexcept;
-		const SDL_GLContext& getContext() noexcept;
+		SDL_Window& getWindow() noexcept;
+		SDL_GLContext& getContext() noexcept;
 		const std::string& getWindowName() const noexcept;
+		uint32_t getWindowWidth() const noexcept;
+		uint32_t getWindowHeight() const noexcept;
 
 	private:
 		void init();
 
 #ifdef SNAKE_DEBUG
 		static void debugCallBack(GLenum source, GLenum type, GLuint id,
-			GLenum severity, GLsizei length,
-			const GLchar* message, const void* userParam);
+								  GLenum severity, GLsizei length,
+								  const GLchar* message, const void* userParam);
 #endif //SNAKE_DEBUG
 
 	private:
