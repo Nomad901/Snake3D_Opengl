@@ -21,8 +21,8 @@ namespace SnakeEngine
 
 		ImGui::StyleColorsDark();
 
-		SDL_Window& window = Game::getInstance().getMainWindowRef().getWindow();
-		SDL_GLContext* context = &Game::getInstance().getMainWindowRef().getContext();
+		SDL_Window& window = Game::getInstance().getWindow().getWindow();
+		SDL_GLContext* context = &Game::getInstance().getWindow().getContext();
 		ImGui_ImplSDL3_InitForOpenGL(&window, context);
 		ImGui_ImplOpenGL3_Init("#version 440");
 	}
@@ -41,7 +41,7 @@ namespace SnakeEngine
 	void ImGuiLayer::end()
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		Window& window = Game::getInstance().getMainWindowRef();
+		Window& window = Game::getInstance().getWindow();
 		io.DisplaySize = ImVec2(window.getWindowWidth(), window.getWindowHeight());
 
 		ImGui::Render();

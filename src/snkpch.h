@@ -22,6 +22,7 @@
 #include "SDL3/SDL.h"
 #include "glad/glad.h"
 #include "spdlog/spdlog.h"
+#include "imgui.h"
 
 #ifdef SNAKE_PLATFORM_WINDOWS
 	#include <Windows.h>

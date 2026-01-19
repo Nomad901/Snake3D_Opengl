@@ -7,11 +7,16 @@ namespace SnakeEngine
 	Game::Game(GameWindowConfiguration pGameWindowConfiguration)
 		: mGameWindowConfiguration{ pGameWindowConfiguration }
 	{
-		mMainWindow = std::make_unique<SnakeEngine::Window>(pGameWindowConfiguration.nameWindow, 
-															pGameWindowConfiguration.windowWidth, 
-															pGameWindowConfiguration.windowHeight);
+		mGameComponents.mainWindow = new Window(pGameWindowConfiguration.nameWindow, 
+												pGameWindowConfiguration.windowWidth, 
+												pGameWindowConfiguration.windowHeight);
 
 		mInstance = this;
+	}
+
+	Game::~Game()
+	{
+		delete mGameComponents.mainWindow;
 	}
 
 	void Game::run()
@@ -39,11 +44,11 @@ namespace SnakeEngine
 		return *mInstance;
 	}
 
-	Window& Game::getMainWindowRef() noexcept
+	Window& Game::getWindow() noexcept
 	{
-		return *mMainWindow;
+		return *mGameComponents.mainWindow;
 	}
-
+	
 	void Game::preRun()
 	{
 		mIsRunning = true;
@@ -51,7 +56,7 @@ namespace SnakeEngine
 
 	void Game::input()
 	{
-
+		ImGui::Button("some buttons");
 	}
 
 	void Game::preUpdate()
@@ -61,17 +66,20 @@ namespace SnakeEngine
 
 	void Game::update()
 	{
-		mMainWindow->render();
+		mGameComponents.mainWindow->render();
 	}
 
 	void Game::startFrame()
 	{
-		mTimer.startTimer();
+		mGameComponents.timer.startTimer();
+		mGameComponents.imguiLayer.begin();
 	}
 
 	void Game::stopFrame()
 	{
-		const float deltaTime = mTimer.getElapsedTime();
+		mGameComponents.imguiLayer.end();
+
+		const float deltaTime = mGameComponents.timer.getElapsedTime();
 		const float maxFPSMs = 1000.0f / mGameWindowConfiguration.maxFPS;
 
 		if (deltaTime < maxFPSMs)

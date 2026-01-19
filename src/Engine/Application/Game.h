@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Application/Window.h"
 #include "Engine/Application/Timer.h"
+#include "Engine/Imgui/ImGuiLayer.h"
 
 namespace SnakeEngine
 {
@@ -11,18 +12,25 @@ namespace SnakeEngine
 		std::string nameWindow{ "Snake3D" };
 	};
 
+	struct GameComponents
+	{
+		Window* mainWindow;
+		ImGuiLayer imguiLayer;
+		SnakeEngine::Timer timer;
+	};
+
 	class Game
 	{
 	public:
 		Game(GameWindowConfiguration pGameConfiguration);
-		~Game() = default;
+		~Game();
 	 
 		void run();
 
 		bool isRunning() noexcept;
 
 		static Game& getInstance();
-		Window& getMainWindowRef() noexcept;
+		Window& getWindow() noexcept;
 
 	private:
 		void preRun();
@@ -43,9 +51,7 @@ namespace SnakeEngine
 		bool mIsRunning{ false };
 		
 		GameWindowConfiguration mGameWindowConfiguration;
-	
-		std::unique_ptr<SnakeEngine::Window> mMainWindow;
-		SnakeEngine::Timer mTimer;
+		GameComponents mGameComponents;
 
 		static inline Game* mInstance = nullptr;
 	};
