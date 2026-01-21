@@ -14,23 +14,21 @@ namespace SnakeEngine
 
 	struct GameComponents
 	{
-		Window* mainWindow;
-		ImGuiLayer* imguiLayer;
+		std::unique_ptr<Window> mainWindow;
+		std::unique_ptr<ImGuiLayer> imguiLayer;
 		SnakeEngine::Timer timer;
+		SDL_Event events;
 	};
 
 	class Game
 	{
 	public:
-		Game(GameWindowConfiguration pGameConfiguration);
-		~Game();
+		Game(const GameWindowConfiguration& pGameConfiguration);
+		~Game() = default;
 	 
 		void run();
 
 		bool isRunning() noexcept;
-
-		static Game& getInstance();
-		Window& getWindow() noexcept;
 
 	private:
 		void preRun();
@@ -52,8 +50,6 @@ namespace SnakeEngine
 		
 		GameWindowConfiguration mGameWindowConfiguration;
 		GameComponents mGameComponents;
-
-		static inline Game* mInstance = nullptr;
 	};
 }
 

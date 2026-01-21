@@ -82,7 +82,7 @@ namespace SnakeEngine
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 
 		mWindow = SDL_CreateWindow(mWindowName.c_str(), mWindowWidth, mWindowHeight,
-			SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+								   SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 		if (!mWindow)
 			GAME_ERROR(std::format("Couldnt initialize the Window! Name: {}, size: {}x{}", mWindowName, mWindowWidth, mWindowHeight));
 

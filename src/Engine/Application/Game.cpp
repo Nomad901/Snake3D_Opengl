@@ -4,22 +4,13 @@
 
 namespace SnakeEngine
 {
-	Game::Game(GameWindowConfiguration pGameWindowConfiguration)
+	Game::Game(const GameWindowConfiguration& pGameWindowConfiguration)
 		: mGameWindowConfiguration{ pGameWindowConfiguration }
 	{
-		mInstance = this;
-
-		mGameComponents.mainWindow = new Window(pGameWindowConfiguration.nameWindow, 
-												pGameWindowConfiguration.windowWidth, 
-												pGameWindowConfiguration.windowHeight);
-		mGameComponents.imguiLayer = new ImGuiLayer();
-
-	}
-
-	Game::~Game()
-	{
-		delete mGameComponents.mainWindow;
-		delete mGameComponents.imguiLayer;
+		mGameComponents.mainWindow = std::make_unique<Window>(pGameWindowConfiguration.nameWindow, 
+															  pGameWindowConfiguration.windowWidth, 
+															  pGameWindowConfiguration.windowHeight);
+		mGameComponents.imguiLayer = std::make_unique<ImGuiLayer>(*mGameComponents.mainWindow.get());
 	}
 
 	void Game::run()
@@ -41,16 +32,6 @@ namespace SnakeEngine
 	{
 		return mIsRunning;
 	}
-
-	Game& Game::getInstance()
-	{
-		return *mInstance;
-	}
-
-	Window& Game::getWindow() noexcept
-	{
-		return *mGameComponents.mainWindow;
-	}
 	
 	void Game::preRun()
 	{
@@ -59,17 +40,22 @@ namespace SnakeEngine
 
 	void Game::input()
 	{
+		while (SDL_PollEvent(&mGameComponents.events))
+		{
+			mGameComponents.imguiLayer->processEvents(mGameComponents.events);
+			if (mGameComponents.events.type == SDL_EVENT_QUIT)
+				mIsRunning = false;
+		}
+	}
+
+	void Game::preUpdate()
+	{
 		ImGui::Begin("name");
 		ImGui::SetNextWindowPos(ImVec2(200.0f, 200.0f));
 		ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));
 
 		ImGui::Button("some buttons");
 		ImGui::End();
-	}
-
-	void Game::preUpdate()
-	{
-
 	}
 
 	void Game::update()
@@ -80,15 +66,17 @@ namespace SnakeEngine
 	void Game::startFrame()
 	{
 		mGameComponents.timer.startTimer();
-		mGameComponents.imguiLayer->begin();
+		mGameComponents.imguiLayer->startFrame();
 	}
 
 	void Game::stopFrame()
 	{
-		mGameComponents.imguiLayer->end();
+		mGameComponents.imguiLayer->endFrame();
 
 		const float deltaTime = mGameComponents.timer.getElapsedTime();
-		const float maxFPSMs = 1000.0f / mGameWindowConfiguration.maxFPS;
+		const float maxFPSMs = mGameWindowConfiguration.maxFPS > 0 ? 
+							   1000.0f / mGameWindowConfiguration.maxFPS :
+							   0.0f;
 
 		if (deltaTime < maxFPSMs)
 		{
