@@ -9,6 +9,10 @@ namespace SnakeEngine
 	}
 	void EBO::init(const void* pData, uint32_t pCount)
 	{
+		mCount = pCount;
+		glGenBuffers(1, &mEBOid);
+		glBindBuffer(GL_INDEX_ARRAY, mEBOid);
+		glBufferData(GL_INDEX_ARRAY, pCount * sizeof(uint32_t), pData, GL_STATIC_DRAW);
 	}
 	void EBO::destroy()
 	{
