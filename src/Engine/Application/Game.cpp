@@ -22,9 +22,10 @@ namespace SnakeEngine
 
 			input();
 			preUpdate();
-			update();
 
 			stopFrame();
+
+			update();
 		}
 	}
 
@@ -50,12 +51,8 @@ namespace SnakeEngine
 
 	void Game::preUpdate()
 	{
-		ImGui::Begin("name");
-		ImGui::SetNextWindowPos(ImVec2(200.0f, 200.0f));
-		ImGui::SetNextWindowSize(ImVec2(200.0f, 200.0f));
-
-		ImGui::Button("some buttons");
-		ImGui::End();
+		glClearColor(0.2f, 0.2f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
 	void Game::update()
@@ -66,11 +63,16 @@ namespace SnakeEngine
 	void Game::startFrame()
 	{
 		mGameComponents.timer.startTimer();
-		mGameComponents.imguiLayer->startFrame();
 	}
 
 	void Game::stopFrame()
 	{
+		mGameComponents.imguiLayer->startFrame();
+
+		ImGui::Begin("name");
+		ImGui::Text("smth");
+		ImGui::End();
+
 		mGameComponents.imguiLayer->endFrame();
 
 		const float deltaTime = mGameComponents.timer.getElapsedTime();
