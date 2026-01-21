@@ -14,8 +14,8 @@ namespace SnakeEngine
 		
 		void addBuffer(VBOLayout& pVBOLayout);
 
-		void destroy();
 		void generate();
+		void destroy();
 		void bind();
 		void unbind();
 

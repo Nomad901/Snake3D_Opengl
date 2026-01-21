@@ -22,6 +22,7 @@
 #include "SDL3/SDL.h"
 #include "glad/glad.h"
 #include "spdlog/spdlog.h"
+#include "glm/glm.hpp"
 #include "imgui.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_opengl3.h"

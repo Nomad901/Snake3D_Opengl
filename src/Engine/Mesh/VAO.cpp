@@ -10,7 +10,15 @@ namespace SnakeEngine
 	void VAO::addBuffer(VBOLayout& pVBOLayout)
 	{
 		bind();
-
+		auto& elements = pVBOLayout.getComponentsOfLayout();
+		uint32_t stride = 0;
+		for (size_t i = 0; i < elements.size(); ++i)
+		{
+			auto& element = elements[i];
+			glEnableVertexAttribArray(i);
+			glVertexAttribPointer(i, element.count, element.type, element.normalized, pVBOLayout.getCount(), (void*)stride);
+			stride += element.count * VBOLayoutComponents::sizeOf(element.type);
+		}
 	}
 	void VAO::destroy()
 	{
