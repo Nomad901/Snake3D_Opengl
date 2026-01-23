@@ -19,7 +19,7 @@ namespace SnakeEngine
 		GLenum getTextureTarget() const noexcept;
 
 	private:
-		uint32_t pTextureID{};
+		uint32_t mTextureID{};
 		GLenum mTextureTarget;
 	};
 }

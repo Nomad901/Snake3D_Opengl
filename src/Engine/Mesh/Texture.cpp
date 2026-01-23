@@ -1,28 +1,61 @@
 #include "snkpch.h"
-#include "Texture.h"
+#include "Engine/Mesh/Texture.h"
+#include "Engine/Application/Log.h"
 
-SnakeEngine::Texture::~Texture()
-{
-}
+#include "stb_image.h"
 
-void SnakeEngine::Texture::init(const std::filesystem::path& pPath, GLenum pTextureTarget)
+namespace SnakeEngine
 {
-}
+	SnakeEngine::Texture::~Texture()
+	{
+		glDeleteTextures(1, &mTextureID);
+	}
 
-void SnakeEngine::Texture::bind(uint32_t pSlot)
-{
-}
+	void SnakeEngine::Texture::init(const std::filesystem::path& pPath, GLenum pTextureTarget)
+	{
+		mTextureTarget = pTextureTarget;
+		stbi_set_flip_vertically_on_load(1);
+		int32_t width, height, bpp;
+		auto localBuffer = stbi_load(pPath.string().c_str(), &width, &height, &bpp, 4);
+		if (!localBuffer)
+		{
+			GAME_ERROR(std::format("Couldnt load the texture: {}", pPath));
+			return;
+		}
 
-void SnakeEngine::Texture::unbind()
-{
-}
+		glGenTextures(1, &mTextureID);
+		glBindTexture(pTextureTarget, mTextureID);
 
-uint32_t SnakeEngine::Texture::getTextureID() const noexcept
-{
-	return 0;
-}
+		glTexParameteri(pTextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(pTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(pTextureTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(pTextureTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-GLenum SnakeEngine::Texture::getTextureTarget() const noexcept
-{
-	return GLenum();
+		glTexImage2D(pTextureTarget, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer);
+		glBindTexture(pTextureTarget, 0);
+
+		if (localBuffer)
+			stbi_image_free(localBuffer);
+	}
+
+	void SnakeEngine::Texture::bind(uint32_t pSlot)
+	{
+		glActiveTexture(GL_TEXTURE0 + pSlot);
+		glBindTexture(mTextureTarget, mTextureID);
+	}
+
+	void SnakeEngine::Texture::unbind()
+	{
+		glBindTexture(mTextureTarget, 0);
+	}
+
+	uint32_t SnakeEngine::Texture::getTextureID() const noexcept
+	{
+		return 0;
+	}
+
+	GLenum SnakeEngine::Texture::getTextureTarget() const noexcept
+	{
+		return GLenum();
+	}
 }

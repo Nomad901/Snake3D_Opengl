@@ -53,7 +53,8 @@ project "Snake3D"
 		"thirdparty/libraries/imgui",
 		"thirdparty/libraries/imgui/backends",
 		"thirdparty/libraries/SDL/include",
-		"thirdparty/libraries/SDL/include/SDL3"
+		"thirdparty/libraries/SDL/include/SDL3",
+		"thirdparty/libraries/stb"
 	}
 
 	libdirs
