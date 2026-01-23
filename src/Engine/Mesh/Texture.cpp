@@ -51,11 +51,11 @@ namespace SnakeEngine
 
 	uint32_t SnakeEngine::Texture::getTextureID() const noexcept
 	{
-		return 0;
+		return mTextureID;
 	}
 
 	GLenum SnakeEngine::Texture::getTextureTarget() const noexcept
 	{
-		return GLenum();
+		return mTextureTarget;
 	}
 }
