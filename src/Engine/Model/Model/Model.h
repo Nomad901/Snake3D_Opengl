@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Engine/Model/Mesh/Mesh.h"
+#include "Engine/Model/Mesh/Material.h"
+#include "Engine/Model/Mesh/Transform.h"
+
 namespace SnakeEngine
 {
 	class Model

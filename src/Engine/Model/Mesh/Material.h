@@ -1,7 +1,7 @@
 #pragma once
 
 #include "glm/glm.hpp"
-#include "Engine/Mesh/Texture.h"
+#include "Engine/Model/Mesh/Texture.h"
 #include "Engine/Renderer/Shader.h"
 
 namespace SnakeEngine
