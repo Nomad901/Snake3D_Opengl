@@ -2,13 +2,16 @@
 
 #include "glm/glm.hpp"
 #include "Engine/Mesh/Texture.h"
+#include "Engine/Renderer/Shader.h"
 
 namespace SnakeEngine
 {
 	struct Material
 	{
 		glm::vec4 baseColor;
-		SnakeEngine::Texture texture;
+		SnakeEngine::Texture* textureAlbedo;
+		SnakeEngine::Texture* textureNormal;
+		SnakeEngine::Shader* shader;
 		float roughness;
 		float metallic;
 	};
