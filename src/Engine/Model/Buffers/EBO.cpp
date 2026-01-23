@@ -1,5 +1,5 @@
 #include "snkpch.h"
-#include "Engine/Mesh/EBO.h"
+#include "Engine/Model/Buffers/EBO.h"
 
 namespace SnakeEngine
 {

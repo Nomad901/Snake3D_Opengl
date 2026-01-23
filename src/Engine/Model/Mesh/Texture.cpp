@@ -1,5 +1,5 @@
 #include "snkpch.h"
-#include "Engine/Mesh/Texture.h"
+#include "Engine/Model/Mesh/Texture.h"
 #include "Engine/Application/Log.h"
 
 #include "stb_image.h"

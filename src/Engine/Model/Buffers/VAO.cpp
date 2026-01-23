@@ -1,5 +1,5 @@
 #include "snkpch.h"
-#include "Engine/Mesh/VAO.h"
+#include "Engine/Model/Buffers/VAO.h"
 
 namespace SnakeEngine
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Mesh/Vertex.h"
+#include "Engine/Model/Mesh/Vertex.h"
 
 namespace SnakeEngine
 {

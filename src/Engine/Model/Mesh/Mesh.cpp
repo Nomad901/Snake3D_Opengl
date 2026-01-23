@@ -1,8 +1,8 @@
 #include "snkpch.h"
-#include "Engine/Mesh/Mesh.h"
+#include "Engine/Model/Mesh/Mesh.h"
 
-#include "Engine/Mesh/Vertex.h"
-#include "Engine/Mesh/VBOLayout.h"
+#include "Engine/Model/Mesh/Vertex.h"
+#include "Engine/Model/Buffers/VBOLayout.h"
 
 namespace SnakeEngine
 {

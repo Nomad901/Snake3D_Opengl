@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Engine/Mesh/VBOLayout.h"
+#include "Engine/Model/Buffers/VBOLayout.h"
 
 namespace SnakeEngine
 {

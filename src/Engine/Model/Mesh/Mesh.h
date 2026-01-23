@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Mesh/VAO.h"
-#include "Engine/Mesh/VBO.h"
-#include "Engine/Mesh/EBO.h"
+#include "Engine/Model/Buffers/VAO.h"
+#include "Engine/Model/Buffers/VBO.h"
+#include "Engine/Model/Buffers/EBO.h"
 
 namespace SnakeEngine
 {
