@@ -19,7 +19,7 @@ namespace SnakeEngine
 		auto localBuffer = stbi_load(pPath.string().c_str(), &width, &height, &bpp, 4);
 		if (!localBuffer)
 		{
-			GAME_ERROR(std::format("Couldnt load the texture: {}", pPath));
+			GAME_ERROR(std::format("Couldnt load the texture: {}", pPath.string()));
 			return;
 		}
 
