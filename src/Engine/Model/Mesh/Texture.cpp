@@ -49,9 +49,9 @@ namespace SnakeEngine
 		glBindTexture(mTextureTarget, 0);
 	}
 
-	void Texture::setTextureType(std::string_view pTextureType)
+	void Texture::setTextureName(std::string_view pTextureName)
 	{
-		mTextureType = pTextureType;
+		mTextureName = pTextureName;
 	}
 
 	uint32_t SnakeEngine::Texture::getTextureID() const noexcept

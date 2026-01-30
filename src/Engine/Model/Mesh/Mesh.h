@@ -15,7 +15,7 @@ namespace SnakeEngine
 		Mesh operator=(const Mesh&) = delete;
 
 		virtual void draw() = 0;
-		virtual void destroy() = 0;
+		void destroy();
 
 	protected:
 		VAO mVAO;
@@ -23,21 +23,5 @@ namespace SnakeEngine
 
 		std::vector<uint32_t> mIndices;
 		std::vector<Texture> mTextures;
-	};
-
-	class StaticMesh : public Mesh
-	{
-	public:
-		void init(const std::vector<SnakeEngine::Vertex>& pVertices,
-				  const std::vector<uint32_t>& pIndices,
-				  const std::vector<Texture>& pTextures);
-
-		void draw() override;
-		void destroy() override;
-
-		const std::vector<Texture>& getTextures() const noexcept;
-
-	private:
-		void loadMesh(const std::vector<SnakeEngine::Vertex>& pVertices);
 	};
 }
