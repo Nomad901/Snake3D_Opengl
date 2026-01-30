@@ -12,7 +12,6 @@ namespace SnakeEngine
 		VBO(const VBO&) = delete;
 		VBO operator=(const VBO&) = delete;
 
-		void init(const std::vector<Vertex>& pData, GLenum pUsage);
 		void init(const void* pData, GLuint pSize, GLenum pUsage);
 		
 		void destroy();

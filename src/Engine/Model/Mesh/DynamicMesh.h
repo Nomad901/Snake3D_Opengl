@@ -10,7 +10,6 @@ namespace SnakeEngine
 				  const std::vector<Texture>& pTextures);
 
 		void draw() override;
-		void destroy() override;
 
 		const std::vector<Texture>& getTextures() const noexcept;
 		

@@ -33,7 +33,7 @@ namespace SnakeEngine
 
 		mVAO.generate();
 		mVAO.bind();
-		vbo.init(pVertices, GL_STATIC_DRAW);
+		vbo.init(pVertices.data(), pVertices.size() * sizeof(SnakeEngine::Vertex), GL_STATIC_DRAW);
 		vboLayout.pushLayout(GL_FLOAT, 3);
 		vboLayout.pushLayout(GL_FLOAT, 3);
 		vboLayout.pushLayout(GL_FLOAT, 2);
