@@ -10,17 +10,34 @@ namespace SnakeEngine
 	{
 	public:
 		Mesh() = default;
-		~Mesh() = default;
+		virtual ~Mesh() = default;
 		Mesh(const Mesh&) = delete;
 		Mesh operator=(const Mesh&) = delete;
 
-		void init(const std::vector<SnakeEngine::Vertex>& pVertices,
-				  const std::vector<uint32_t>& pIndices);
-		void draw();
-		void destroy();
+		virtual void draw() = 0;
+		virtual void destroy() = 0;
 
-	private:
+	protected:
 		VAO mVAO;
 		EBO mEBO;
+
+		std::vector<uint32_t> mIndices;
+		std::vector<Texture> mTextures;
+	};
+
+	class StaticMesh : public Mesh
+	{
+	public:
+		void init(const std::vector<SnakeEngine::Vertex>& pVertices,
+				  const std::vector<uint32_t>& pIndices,
+				  const std::vector<Texture>& pTextures);
+
+		void draw() override;
+		void destroy() override;
+
+		const std::vector<Texture>& getTextures() const noexcept;
+
+	private:
+		void loadMesh(const std::vector<SnakeEngine::Vertex>& pVertices);
 	};
 }
