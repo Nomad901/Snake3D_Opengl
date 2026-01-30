@@ -15,12 +15,16 @@ namespace SnakeEngine
 		void bind(uint32_t pSlot = 0);
 		void unbind();
 
+		void setTextureType(std::string_view pTextureType);
+
 		uint32_t getTextureID() const noexcept;
 		GLenum getTextureTarget() const noexcept;
 
 	private:
 		uint32_t mTextureID{};
 		GLenum mTextureTarget;
+
+		std::string mTextureType;
 	};
 }
 

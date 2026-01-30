@@ -17,6 +17,7 @@ namespace SnakeEngine
 		void init(const std::vector<SnakeEngine::Vertex>& pVertices,
 				  const std::vector<uint32_t>& pIndices);
 		void draw();
+		void destroy();
 
 	private:
 		VAO mVAO;

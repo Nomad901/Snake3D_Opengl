@@ -26,4 +26,9 @@ namespace SnakeEngine
 		mVAO.bind();
 		glDrawElements(GL_TRIANGLES, mEBO.getCount(), GL_UNSIGNED_INT, nullptr);
 	}
+	void Mesh::destroy()
+	{
+		mVAO.destroy();
+		mEBO.destroy();
+	}
 }

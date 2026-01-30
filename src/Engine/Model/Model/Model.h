@@ -10,18 +10,13 @@ namespace SnakeEngine
 	{
 	public:
 		Model() = default;
-		~Model();
+		virtual ~Model() = 0;
 
-		auto init(const std::filesystem::path& pModelPath,
-				  const SnakeEngine::Transform& pTransform) -> void;
+		virtual const SnakeEngine::Mesh& getMesh() const noexcept = 0;
+		virtual const SnakeEngine::Material& getMaterial() const noexcept = 0;
+		virtual const SnakeEngine::Transform& getTransform() const noexcept  = 0;
 
-		auto getMesh() const noexcept -> const SnakeEngine::Mesh&;
-		auto getMaterial() const noexcept -> const SnakeEngine::Material&;
-		auto getTransform() const noexcept -> const SnakeEngine::Transform&;
-
-	private:
-		SnakeEngine::Mesh mMesh;
-		SnakeEngine::Material mMaterial;
+	protected:
 		SnakeEngine::Transform mTransform;
 	};
 }
