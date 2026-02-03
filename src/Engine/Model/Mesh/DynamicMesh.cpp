@@ -1,8 +1,6 @@
 #include "snkpch.h"
 #include "Engine/Model/Mesh/DynamicMesh.h"
-#include "Engine/Model/Mesh/Mesh.h"
 
-#include "Engine/Model/Mesh/BoneVertex.h"
 #include "Engine/Model/Buffers/VBOLayout.h"
 #include "Engine/Model/Mesh/Texture.h"
 
@@ -10,10 +8,10 @@ namespace SnakeEngine
 {
 	void DynamicMesh::init(const std::vector<SnakeEngine::BoneVertex>& pVertices, 
 						   const std::vector<uint32_t>& pIndices, 
-						   const std::vector<Texture>& pTextures)
+						   std::vector<Texture>& pTextures)
 	{
 		mIndices = pIndices;
-		mTextures = pTextures;
+		mTextures = std::move(pTextures);
 
 		loadMesh(pVertices);
 	}
@@ -22,7 +20,7 @@ namespace SnakeEngine
 		mVAO.bind();
 		glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, 0);
 	}
-	const std::vector<SnakeEngine::Texture>& DynamicMesh::getTextures() const noexcept
+	std::vector<SnakeEngine::Texture>& DynamicMesh::getTextures() noexcept
 	{
 		return mTextures;
 	}

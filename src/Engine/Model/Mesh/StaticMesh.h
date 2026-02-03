@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Engine/Model/Mesh/Mesh.h"
+
 namespace SnakeEngine
 {
 	class StaticMesh : public Mesh
@@ -7,11 +9,11 @@ namespace SnakeEngine
 	public:
 		void init(const std::vector<SnakeEngine::Vertex>& pVertices,
 				  const std::vector<uint32_t>& pIndices,
-				  const std::vector<Texture>& pTextures);
+				  std::vector<SnakeEngine::Texture>& pTextures);
 
 		void draw() override;
 
-		const std::vector<Texture>& getTextures() const noexcept;
+		std::vector<SnakeEngine::Texture>& getTextures() noexcept;
 
 	private:
 		void loadMesh(const std::vector<SnakeEngine::Vertex>& pVertices);

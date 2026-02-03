@@ -3,6 +3,7 @@
 #include "Engine/Model/Buffers/VAO.h"
 #include "Engine/Model/Buffers/VBO.h"
 #include "Engine/Model/Buffers/EBO.h"
+#include "Engine/Model/Mesh/Texture.h"
 
 namespace SnakeEngine
 {
@@ -22,6 +23,6 @@ namespace SnakeEngine
 		EBO mEBO;
 
 		std::vector<uint32_t> mIndices;
-		std::vector<Texture> mTextures;
+		std::vector<SnakeEngine::Texture> mTextures;
 	};
 }

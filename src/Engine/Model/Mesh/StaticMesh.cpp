@@ -1,7 +1,6 @@
 #include "snkpch.h"
 #include "Engine/Model/Mesh/StaticMesh.h"
 
-#include "Engine/Model/Mesh/Mesh.h"
 #include "Engine/Model/Mesh/Vertex.h"
 #include "Engine/Model/Buffers/VBOLayout.h"
 #include "Engine/Model/Mesh/Texture.h"
@@ -10,10 +9,10 @@ namespace SnakeEngine
 {
 	void StaticMesh::init(const std::vector<SnakeEngine::Vertex>& pVertices,
 						  const std::vector<uint32_t>& pIndices, 
-						  const std::vector<Texture>& pTextures)
+						  std::vector<Texture>& pTextures)
 	{
 		mIndices = pIndices;
-		mTextures = pTextures;
+		mTextures = std::move(pTextures);
 
 		loadMesh(pVertices);
 	}
@@ -22,7 +21,7 @@ namespace SnakeEngine
 		mVAO.bind();
 		glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, 0);
 	}
-	const std::vector<Texture>& StaticMesh::getTextures() const noexcept
+	std::vector<Texture>& StaticMesh::getTextures() noexcept
 	{
 		return mTextures;
 	}

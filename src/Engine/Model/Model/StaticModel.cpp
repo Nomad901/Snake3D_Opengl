@@ -1,6 +1,4 @@
 #include "snkpch.h"
-
-#include "Engine/Model/Model/Model.h"
 #include "Engine/Model/Model/StaticModel.h"
 
 namespace SnakeEngine
@@ -16,7 +14,7 @@ namespace SnakeEngine
 
 	const SnakeEngine::Mesh& StaticModel::getMesh() const noexcept
 	{
-		return mMesh;
+		return mStaticMesh;
 	}
 
 	const SnakeEngine::Material& StaticModel::getMaterial() const noexcept
@@ -27,5 +25,10 @@ namespace SnakeEngine
 	const SnakeEngine::Transform& StaticModel::getTransform() const noexcept
 	{
 		return mTransform;
+	}
+	void StaticModel::loadModel()
+	{
+		const uint32_t ASSIMP_LOAD_FLAGS = (aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_JoinIdenticalVertices);
+		//aiScene scene = 
 	}
 }
