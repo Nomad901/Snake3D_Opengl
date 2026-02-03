@@ -27,6 +27,9 @@
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_opengl3.h"
 
+#include "Engine/Application/Utils.h"
+#include "Engine/Application/Log.h"
+
 #ifdef SNAKE_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // SNAKE_PLATFORM_WINDOWS

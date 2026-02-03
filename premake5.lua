@@ -67,6 +67,7 @@ project "Snake3D"
 	links 
 	{
 		"SDL3",
+		"assimp-vc145-mtd"
 	}
 
 	filter "system:windows"

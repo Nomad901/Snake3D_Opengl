@@ -14,7 +14,7 @@ namespace SnakeEngine
 		void draw() override;
 
 		std::vector<SnakeEngine::Texture>& getTextures() noexcept;
-
+		
 	private:
 		void loadMesh(const std::vector<SnakeEngine::Vertex>& pVertices);
 	};
