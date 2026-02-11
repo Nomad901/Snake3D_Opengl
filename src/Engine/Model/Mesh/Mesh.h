@@ -7,6 +7,14 @@
 
 namespace SnakeEngine
 {
+	struct BasicMeshEntry
+	{
+		uint32_t mNumIndices{};
+		uint32_t mBaseIndex{};
+		uint32_t mBaseVertex{};
+		uint32_t mMaterialIndex{ 0xFFFFFFFF };
+	};
+
 	class Mesh
 	{
 	public:

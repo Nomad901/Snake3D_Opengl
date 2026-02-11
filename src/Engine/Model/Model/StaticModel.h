@@ -17,8 +17,8 @@ namespace SnakeEngine
 		void loadModel(const std::filesystem::path& pPath,
 					   const SnakeEngine::Transform& pTransform);
 
-		const SnakeEngine::Mesh& getMesh() const noexcept override;
-		const SnakeEngine::Material& getMaterial() const noexcept override;
+		const std::vector<SnakeEngine::Mesh>& getMesh() const noexcept override;
+		const std::vector<SnakeEngine::Material>& getMaterial() const noexcept override;
 		const SnakeEngine::Transform& getTransform() const noexcept override;
 
 	private:
@@ -26,14 +26,27 @@ namespace SnakeEngine
 		void initFromSceneAssimp();
 
 		void initMaterial();
+		
+		std::pair<uint32_t, uint32_t> getNumVerticesAndIndices();
+
+		void initAllMeshes();
+		void initSingleMesh(const aiMesh* pMesh);
+
+		void initMaterials();
+		void populateBuffer();
+		void populateBuffers();
 
 	private:
 		std::filesystem::path mModelPath;
 
 		glm::mat4 mGlobalInverseTransf;
 
-		SnakeEngine::Material mMaterial;
-		SnakeEngine::StaticMesh mStaticMesh;
+		std::vector<SnakeEngine::Mesh> mMeshes2;
+		std::vector<SnakeEngine::BasicMeshEntry> mMeshes;
+		std::vector<SnakeEngine::Material> mMaterials;
+		
+		std::vector<SnakeEngine::Vertex> mVertices;
+		std::vector<uint32_t> mIndices;
 
 		Assimp::Importer mImporter;
 		const aiScene* mScene{ nullptr };
