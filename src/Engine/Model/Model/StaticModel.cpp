@@ -53,8 +53,8 @@ namespace SnakeEngine
 		mVertices.reserve(numVertices);
 		mIndices.reserve(numIndices);
 		
-		//initAllMeshes();
-		//initMaterials();
+		initAllMeshes();
+		initMaterials();
 		//populateBuffers();
 	}
 
@@ -112,5 +112,49 @@ namespace SnakeEngine
 			mIndices.push_back(face.mIndices[1]);
 			mIndices.push_back(face.mIndices[2]);
 		}
+	}
+
+	void StaticModel::initMaterials()
+	{
+		std::filesystem::path directory = mModelPath.parent_path();
+
+		for (uint32_t i = 0; i < mScene->mNumMaterials; ++i)
+		{
+			loadTextures(directory, mScene->mMaterials[i], i);
+			loadColors(mScene->mMaterials[i], i);
+		}
+	}
+
+	void StaticModel::loadTextures(const std::filesystem::path& pPath, const aiMaterial* pMaterial, uint32_t pIndex)
+	{
+		mMaterials[pIndex].diffuseTexture = nullptr;
+
+		if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0)
+		{
+			aiString texturePath;
+			if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath) == AI_SUCCESS)
+			{
+				std::string fullPath = pPath.string() + "/" + texturePath.data;
+				mMaterials[pIndex].diffuseTexture = std::make_unique<SnakeEngine::Texture>();
+				mMaterials[pIndex].diffuseTexture->init(fullPath, GL_TEXTURE_2D);
+			}
+		}
+
+		mMaterials[pIndex].specularTexture = nullptr;
+
+		if (pMaterial->GetTextureCount(aiTextureType_SHININESS) > 0)
+		{
+			aiString texturePath;
+			if (pMaterial->GetTexture(aiTextureType_SHININESS, 0, &texturePath) == AI_SUCCESS)
+			{
+				std::string fullPath = pPath.string() + "/" + texturePath.data;
+				mMaterials[pIndex].specularTexture = std::make_unique<SnakeEngine::Texture>();
+				mMaterials[pIndex].specularTexture->init(fullPath, GL_TEXTURE_2D);
+			}
+		}
+    }
+
+	void StaticModel::loadColors(const aiMaterial* pMaterial, uint32_t pIndex)
+	{
 	}
 }

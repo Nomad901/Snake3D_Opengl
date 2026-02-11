@@ -9,9 +9,9 @@ namespace SnakeEngine
 	struct Material
 	{
 		glm::vec4 baseColor;
-		SnakeEngine::Texture* textureAlbedo;
-		SnakeEngine::Texture* textureNormal;
-		SnakeEngine::Shader* shader;
+		std::unique_ptr<SnakeEngine::Texture> diffuseTexture;
+		std::unique_ptr<SnakeEngine::Texture> specularTexture;
+		std::unique_ptr<SnakeEngine::Shader> shader;
 		float roughness;
 		float metallic;
 	};

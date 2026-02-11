@@ -25,14 +25,15 @@ namespace SnakeEngine
 		void init();
 		void initFromSceneAssimp();
 
-		void initMaterial();
-		
 		std::pair<uint32_t, uint32_t> getNumVerticesAndIndices();
 
 		void initAllMeshes();
 		void initSingleMesh(const aiMesh* pMesh);
 
 		void initMaterials();
+		void loadTextures(const std::filesystem::path& pPath, const aiMaterial* pMaterial, uint32_t pIndex);
+		void loadColors(const aiMaterial* pMaterial, uint32_t pIndex);
+
 		void populateBuffer();
 		void populateBuffers();
 
