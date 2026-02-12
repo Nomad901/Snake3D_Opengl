@@ -13,6 +13,10 @@ namespace SnakeEngine
 		glBindBuffer(GL_ARRAY_BUFFER, mVBOid);
 		glBufferData(GL_ARRAY_BUFFER, pSize, pData, pUsage);
 	}
+	void VBO::setID(uint32_t pVBOID)
+	{
+		mVBOid = pVBOID;
+	}
 	void VBO::destroy()
 	{
 		glDeleteBuffers(1, &mVBOid);

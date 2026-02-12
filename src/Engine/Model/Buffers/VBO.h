@@ -14,6 +14,7 @@ namespace SnakeEngine
 
 		void init(const void* pData, GLuint pSize, GLenum pUsage);
 		
+		void setID(uint32_t pVBOID);
 		void destroy();
 		void bind();
 		void unbind();

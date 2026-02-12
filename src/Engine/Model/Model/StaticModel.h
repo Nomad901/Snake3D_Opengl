@@ -21,6 +21,8 @@ namespace SnakeEngine
 		const std::vector<SnakeEngine::Material>& getMaterial() const noexcept override;
 		const SnakeEngine::Transform& getTransform() const noexcept override;
 
+		void render();
+
 	private:
 		void init();
 		void initFromSceneAssimp();
@@ -34,19 +36,33 @@ namespace SnakeEngine
 		void loadTextures(const std::filesystem::path& pPath, const aiMaterial* pMaterial, uint32_t pIndex);
 		void loadColors(const aiMaterial* pMaterial, uint32_t pIndex);
 
-		void populateBuffer();
 		void populateBuffers();
 
 	private:
+
+		enum class BUFFER_TYPE : uint32_t
+		{
+			INDEX_BUFFER = 0,
+			POS_BUFFER = 1,
+			TEXTURE_BUFFER = 2,
+			NORMAL_BUFFER = 3,
+			NUMBER_OF_BUFFERS = 4
+		};
+					
+	private:
 		std::filesystem::path mModelPath;
+
+		VAO mVAO;
+		EBO mEBO;
+		std::array<VBO, static_cast<uint32_t>(BUFFER_TYPE::NUMBER_OF_BUFFERS)> mBuffers;
 
 		glm::mat4 mGlobalInverseTransf;
 
-		std::vector<SnakeEngine::Mesh> mMeshes2;
-		std::vector<SnakeEngine::BasicMeshEntry> mMeshes;
+		std::vector<SnakeEngine::StaticMesh> mMeshes;
+		std::vector<SnakeEngine::BasicMeshEntry> mMeshesEntry;
 		std::vector<SnakeEngine::Material> mMaterials;
 		
-		std::vector<SnakeEngine::Vertex> mVertices;
+		SnakeEngine::VertexSOA mVertices;
 		std::vector<uint32_t> mIndices;
 
 		Assimp::Importer mImporter;
